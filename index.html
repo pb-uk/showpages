@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+
+<title>Show Pages</title>
+
+<style>
+input.url { width: 400px; }
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>Show pages from the web</h1>
+</header>
+
+<main>
+    <p>Enter urls to show below:</p>
+    <div class="form">
+        <ul>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+            <li>Url: <input class="url"</li>
+        </ul>
+        <input type="button" class="btn btn-submit" value="Run">
+    </div>
+</main>
+
+<!-- jQuery siteshow dependency -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+<!-- siteshow -->
+<script src="src/showpages.js"></script>
+
+<script>
+$(function ($) {
+    // Bind the submit button.
+    $('.btn-submit').on('click', function (ev) {
+        // Find associated url inputs.
+        var $inputs = $(this).closest('.form').find('input.url');
+        var urls = [];
+        $inputs.each(function () {
+            if (this.value != '') {
+                urls.push(this.value);
+            }
+        });
+        // Create and run the show..
+        new ShowPages(urls).run();
+        // Avoid a form sumbission.
+        return false;
+    })
+}(jQuery));
+</script>
+
+</body>
+</html>
